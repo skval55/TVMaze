@@ -32,7 +32,7 @@ function populateShows(shows) {
     try {
       img = show.show.image.original;
     } catch {
-      img = "http://tinyurl.com/missing-tv";
+      img = "https://tinyurl.com/missing-tv";
     }
     const $show = $(
       `<div data-show-id="${show.show.id}" class="Show col-md-12 col-lg-6 mb-4">
