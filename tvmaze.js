@@ -35,16 +35,16 @@ function populateShows(shows) {
       img = "https://tinyurl.com/missing-tv";
     }
     const $show = $(
-      `<div data-show-id="${show.show.id}" class="Show col-md-12 col-lg-6 mb-4">
-      <div class="media">
+      `<div data-show-id="${show.show.id}" class="Show col-md-6 col-lg-4 mb-4">
+      <div class="card">
       <img
       src="${img}"
       alt="${show.show.name}"
-      class="w-25 mr-3">
-      <div class="media-body">
-      <h5 class="text-primary">${show.show.name}</h5>
-      <div><small>${show.show.summary}</small></div>
-      <button class="btn btn-outline-light btn-sm Show-getEpisodes">
+      class="card-img-top ">
+      <div class="card-body">
+      <h5 class="text-primary card-title">${show.show.name}</h5>
+      <div class="card-text"><small>${show.show.summary}</small></div>
+      <button  class="btn btn-outline-info btn-sm Show-getEpisodes">
       Episodes
       </button>
       </div>
@@ -57,10 +57,16 @@ function populateShows(shows) {
   // gets show id to run getEpisodesOfShow function
   // also i put the click event in this function so when the buttons are added they
   // will get this click event.
-  $(".Show-getEpisodes").click(function (e) {
+  $(".Show-getEpisodes").click(async function (e) {
     $("#episodes-list").html("");
     const showId = $(e.target).closest(".Show").data("show-id");
-    getEpisodesOfShow(showId);
+    await getEpisodesOfShow(showId);
+    $("html, body").animate(
+      {
+        scrollTop: $("#episodes-area").offset().top,
+      },
+      900
+    );
   });
 }
 
